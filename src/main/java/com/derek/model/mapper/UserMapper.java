@@ -3,14 +3,13 @@ package com.derek.model.mapper;
 import com.derek.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
  * @author Derek
  * @date 2018/3/21 09:37
  */
-@Service
+@org.apache.ibatis.annotations.Mapper
 public interface UserMapper extends Mapper<User> {
     @Select(
             "SELECT * FROM user WHERE username = #{username} AND password = #{md5Password}"

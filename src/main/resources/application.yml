@@ -3,7 +3,7 @@ server:
   port: 8000
 spring:
   application:
-    name: admin-managee
+    name: css
   datasource:
 
     url: jdbc:mysql://localhost/css?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull

@@ -3,9 +3,9 @@
 		<div class="user">
             <#if user??>
                 <#if user.type??>
-                    <#if user.type==1>卖家<#else>买家</#if>
+                    <#if user.type==2>卖家<#else>买家</#if>
                     你好，
-                    <span class="name">${(user.userName)!"默认值"}</span>！
+                    <span class="name">${(user.username)!"默认值"}</span>！
                     <a href="/logout">[退出]</a>
                 </#if>
             <#else >
@@ -16,7 +16,7 @@
 			<li><a href="/">首页</a></li>
             <#if user??>
                 <#if user.type??>
-                    <#if user.type==0>
+                    <#if user.type==1>
                         <li><a href="/account">账务</a></li>
                         <li><a href="/settleAccount">购物车</a></li>
                     <#else >
