@@ -1,6 +1,7 @@
 package com.derek.model.mapper;
 
 import com.derek.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.common.Mapper;
@@ -14,5 +15,5 @@ public interface UserMapper extends Mapper<User> {
     @Select(
             "SELECT * FROM user WHERE username = #{username} AND password = #{md5Password}"
     )
-    public User verifyUser(String username, String md5Password);
+    public User verifyUser(@Param("username") String username, @Param("md5Password") String md5Password);
 }
