@@ -1,8 +1,10 @@
 package com.derek.service;
 
-        import com.derek.model.Content;
+import com.derek.model.Content;
+import com.derek.model.VO.ContentVO;
 
-        import java.util.List;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * @author Derek
@@ -11,4 +13,6 @@ package com.derek.service;
 public interface ContentService {
 
     public List<Content> getAll();
+
+    public List<ContentVO> getAllVO(HashSet<Integer> buySet);
 }

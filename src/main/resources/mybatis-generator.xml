@@ -48,7 +48,6 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>-->
 
-        <table tableName="user"></table>
-        <table tableName="content"/>
+        <table tableName="order"></table>
     </context>
 </generatorConfiguration>  
