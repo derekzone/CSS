@@ -7,6 +7,7 @@ import com.derek.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -40,6 +41,26 @@ public class ContentServiceImpl implements ContentService {
     public List<ContentVO> getAllVO(HashSet<Integer> buySet) {
         List<Content> contents = getAll();
         List<ContentVO> contentVOS = ContentVO.buildFromList(contents, buySet);
+        return contentVOS;
+    }
+
+    @Override
+    public List<ContentVO> filterVO(HashSet<Integer> buySet, boolean isBuy) {
+        List<Content> contents = getAll();
+        List<ContentVO> contentVOS = new ArrayList<ContentVO>();
+        if (isBuy) {
+            for (Content content : contents) {
+                if (buySet.contains(content.getId())) {
+                    contentVOS.add(new ContentVO(content, true));
+                }
+            }
+        } else {
+            for (Content content : contents) {
+                if (!buySet.contains(content.getId())) {
+                    contentVOS.add(new ContentVO(content, false));
+                }
+            }
+        }
         return contentVOS;
     }
 }

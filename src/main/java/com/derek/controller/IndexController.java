@@ -19,6 +19,7 @@ import java.util.List;
  * @author Derek
  * @date 2018/3/21 14:32
  */
+//TODO log没有
 @Controller
 public class IndexController {
 
@@ -35,9 +36,19 @@ public class IndexController {
             modelMap.addAttribute("contentList", contentList);
         } else {
             HashSet<Integer> buySet = orderService.getBuySet(user.getId());
-            List<ContentVO> contentVOS = contentService.getAllVO(buySet);
+            List<ContentVO> contentVOS;
+            if (type == null) {
+                type = 0;
+            }
+            modelMap.addAttribute("type", type);
+            if (type == 1) {
+                contentVOS = contentService.filterVO(buySet, false);
+            } else {
+                contentVOS = contentService.getAllVO(buySet);
+            }
             modelMap.addAttribute("contentVOList", contentVOS);
         }
+
         return "index";
     }
 }
