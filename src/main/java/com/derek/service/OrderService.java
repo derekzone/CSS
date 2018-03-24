@@ -37,4 +37,14 @@ public interface OrderService {
      */
     public Order getByUidCid(int uid, int cid);
 
+    /**
+     * 下单
+     *
+     * @param uid    用户id
+     * @param cid    商品id
+     * @param number 购买数量
+     * @return
+     */
+    public boolean order(int uid, int cid, int number);
+
 }

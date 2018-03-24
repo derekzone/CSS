@@ -29,8 +29,16 @@
                     id="addNum" class="moreNum"><a>+</a></span></div>
             <div class="oprt f-cb">
                 <#if user??>
+                    <#if c.isBuy()>
                     <span class="u-btn u-btn-primary z-dis">已购买</span>
                     <span class="buyprice">当时购买价格：¥${c.buyPrice}</span>
+                    <#else >
+                    <button class="u-btn u-btn-primary" id="add" data-id="${c.id}" data-title="${c.title}"
+                            data-price="${c.price}">
+                        加入购物车
+                    </button>
+                    </#if>
+
                 </#if>
             </div>
         </div>

@@ -2,6 +2,7 @@ package com.derek.model.mapper;
 
 
 import com.derek.model.Order;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -29,4 +30,7 @@ public interface OrderMapper extends Mapper<Order> {
 
     @Select("SELECT * FROM `order` WHERE uid = ${uid} AND cid = ${cid}")
     public Order getByUserContent(@Param("uid") int uid, @Param("cid") int cid);
+
+    @Insert("INSERT INTO `order`(uid, cid, price, num) VALUES(#{uid},#{cid},#{price},#{num})")
+    public boolean order(Order order);
 }

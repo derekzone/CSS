@@ -1,6 +1,8 @@
 package com.derek.service.impl;
 
+import com.derek.model.Content;
 import com.derek.model.Order;
+import com.derek.model.mapper.ContentMapper;
 import com.derek.model.mapper.OrderMapper;
 import com.derek.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private ContentMapper contentMapper;
 
     @Override
     public HashSet<Integer> getBuySet(int uid) {
@@ -34,5 +38,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order getByUidCid(int uid, int cid) {
         return orderMapper.getByUserContent(uid, cid);
+    }
+
+    @Override
+    public boolean order(int uid, int cid, int number) {
+        Content content = contentMapper.selectByPrimaryKey(cid);
+        Order order = new Order();
+        order.setCid(cid);
+        order.setNum(number);
+        order.setPrice(content.getPrice());
+        order.setUid(uid);
+        return orderMapper.order(order);
     }
 }
