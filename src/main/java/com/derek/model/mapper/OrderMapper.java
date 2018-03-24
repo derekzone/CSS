@@ -26,4 +26,7 @@ public interface OrderMapper extends Mapper<Order> {
             "SELECT * FROM `order` WHERE uid = ${uid}"
     )
     public List<Order> getOrderBuyUid(@Param("uid") Integer uid);
+
+    @Select("SELECT * FROM `order` WHERE uid = ${uid} AND cid = ${cid}")
+    public Order getByUserContent(@Param("uid") int uid, @Param("cid") int cid);
 }

@@ -12,17 +12,26 @@
         </div>
     <#else>
     <div class="n-show f-cb" id="showContent">
-        <div class="img"><img src="${content.image}" alt=""></div>
+        <#if user??>
+            <#assign c = contentVO>
+        <#else >
+            <#assign c = content>
+        </#if>
+        <div class="img"><img src="${c.image}" alt=""></div>
         <div class="cnt">
-            <h2>${content.title}</h2>
-            <p class="summary">${content.summary}</p>
+            <h2>${c.title}</h2>
+            <p class="summary">${c.summary}</p>
             <div class="price">
-                <span class="v-unit">¥</span><span class="v-value">${content.price}</span>
+                <span class="v-unit">¥</span><span class="v-value">${c.price}</span>
             </div>
             <div class="num">购买数量：<span id="plusNum" class="lessNum"><a>-</a></span><span class="totalNum"
                                                                                           id="allNum">0</span><span
                     id="addNum" class="moreNum"><a>+</a></span></div>
             <div class="oprt f-cb">
+                <#if user??>
+                    <span class="u-btn u-btn-primary z-dis">已购买</span>
+                    <span class="buyprice">当时购买价格：¥${c.buyPrice}</span>
+                </#if>
             </div>
         </div>
     </div>
@@ -30,7 +39,7 @@
         <h2>详细信息</h2>
     </div>
     <div class="n-detail">
-        ${content.detail}
+        ${c.detail}
     </div>
     </#if>
 </div>

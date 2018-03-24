@@ -1,6 +1,7 @@
 package com.derek.model.VO;
 
 import com.derek.model.Content;
+import com.derek.model.Order;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
@@ -33,6 +34,11 @@ public class ContentVO {
 
     private boolean isBuy;
 
+    /**
+     * 购买时价格
+     */
+    private BigDecimal buyPrice;
+
     public ContentVO() {
     }
 
@@ -52,4 +58,15 @@ public class ContentVO {
         }
         return contentVOS;
     }
+
+    public ContentVO(Content content, Order order) {
+        BeanUtils.copyProperties(content, this);
+        if (order == null) {
+            this.isBuy = false;
+        } else {
+            this.isBuy = true;
+            this.buyPrice = order.getPrice();
+        }
+    }
+
 }

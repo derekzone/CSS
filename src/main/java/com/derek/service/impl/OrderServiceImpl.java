@@ -1,5 +1,6 @@
 package com.derek.service.impl;
 
+import com.derek.model.Order;
 import com.derek.model.mapper.OrderMapper;
 import com.derek.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,16 @@ public class OrderServiceImpl implements OrderService {
     public HashSet<Integer> getBuySet(int uid) {
         List<Integer> buyList = orderMapper.getBuySet(uid);
         return new HashSet<Integer>(buyList);
+    }
+
+    @Override
+    public boolean checkBuy(int uid, int cid) {
+        Order order = orderMapper.getByUserContent(uid, cid);
+        return order != null;
+    }
+
+    @Override
+    public Order getByUidCid(int uid, int cid) {
+        return orderMapper.getByUserContent(uid, cid);
     }
 }
