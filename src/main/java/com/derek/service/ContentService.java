@@ -34,4 +34,12 @@ public interface ContentService {
      * @return
      */
     public List<ContentVO> filterVO(HashSet<Integer> buySet, boolean isBuy);
+
+    /**
+     * 根据id查找商品详情
+     *
+     * @param id
+     * @return
+     */
+    public Content getById(int id);
 }

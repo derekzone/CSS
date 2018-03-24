@@ -63,4 +63,9 @@ public class ContentServiceImpl implements ContentService {
         }
         return contentVOS;
     }
+
+    @Override
+    public Content getById(int id) {
+        return contentMapper.selectByPrimaryKey(id);
+    }
 }
