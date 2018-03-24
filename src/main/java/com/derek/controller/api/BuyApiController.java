@@ -24,16 +24,22 @@ public class BuyApiController {
     @Autowired
     OrderService orderService;
 
-    //TODO 加一条数据库唯一索引  按照目前的设计，同一个用户同一个商品，只能产生一条下单记录
     @RequestMapping("/buy")
     @ResponseBody
+
+    //TODO 统一做异常抛出  切面处理抛出异常
     public BaseResponse buy(@RequestBody List<OrderInfo> orderInfos,
                             HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
         if (user == null || user.getType() == 2) {
             return BaseResponse.fail();
         }
-        boolean result = orderService.order(user.getId(), orderInfos.get(0).getId(), orderInfos.get(0).getNumber());
+        for (OrderInfo orderInfo :
+                orderInfos) {
+            orderService.order(user.getId(), orderInfo.getId(), orderInfo.getNumber());
+        }
+        //TODO 异常处理
+        boolean result = true;
         if (result == true) {
             return BaseResponse.success();
         } else {

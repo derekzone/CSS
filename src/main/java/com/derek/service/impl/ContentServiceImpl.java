@@ -68,4 +68,9 @@ public class ContentServiceImpl implements ContentService {
     public Content getById(int id) {
         return contentMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<ContentVO> queryVOByUid(int uid) {
+        return contentMapper.queryByUid(uid);
+    }
 }

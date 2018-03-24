@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -35,9 +36,19 @@ public class ContentVO {
     private boolean isBuy;
 
     /**
+     * 购买时间
+     */
+    private Date buyTime;
+
+    /**
      * 购买时价格
      */
     private BigDecimal buyPrice;
+
+    /**
+     * 购买数量
+     */
+    private int num;
 
     public ContentVO() {
     }
@@ -66,6 +77,8 @@ public class ContentVO {
         } else {
             this.isBuy = true;
             this.buyPrice = order.getPrice();
+            this.buyTime = order.getGmtCreate();
+            this.num = order.getNum();
         }
     }
 

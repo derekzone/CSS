@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -33,4 +34,7 @@ public interface OrderMapper extends Mapper<Order> {
 
     @Insert("INSERT INTO `order`(uid, cid, price, num) VALUES(#{uid},#{cid},#{price},#{num})")
     public boolean order(Order order);
+
+    @Select("SELECT SUM(price*num)From `order` WHERE uid = 2")
+    public BigDecimal computeTotalCost(int uid);
 }

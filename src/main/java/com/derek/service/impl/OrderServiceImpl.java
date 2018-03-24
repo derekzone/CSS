@@ -8,6 +8,7 @@ import com.derek.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -48,6 +49,8 @@ public class OrderServiceImpl implements OrderService {
         order.setNum(number);
         order.setPrice(content.getPrice());
         order.setUid(uid);
+        order.setGmtCreate(new Date());
         return orderMapper.order(order);
     }
+
 }

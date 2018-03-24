@@ -2,6 +2,7 @@ package com.derek.model;
 
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Order {
     @Id
@@ -14,6 +15,8 @@ public class Order {
     private BigDecimal price;
 
     private Integer num;
+
+    private Date gmtCreate;
 
     public Integer getId() {
         return id;
@@ -53,5 +56,13 @@ public class Order {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 }
