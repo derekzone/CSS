@@ -73,4 +73,9 @@ public class ContentServiceImpl implements ContentService {
     public List<ContentVO> queryVOByUid(int uid) {
         return contentMapper.queryByUid(uid);
     }
+
+    @Override
+    public List<Content> queryBySid(int sid) {
+        return contentMapper.queryBySid(sid);
+    }
 }

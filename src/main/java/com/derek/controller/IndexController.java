@@ -35,20 +35,28 @@ public class IndexController {
         if (user == null) {
             modelMap.addAttribute("contentList", contentList);
         } else {
-            HashSet<Integer> buySet = orderService.getBuySet(user.getId());
+            modelMap.addAttribute("user", user);
+            //TODO user type 枚举封装
             List<ContentVO> contentVOS;
-            if (type == null) {
-                type = 0;
-            }
-            modelMap.addAttribute("type", type);
-            if (type == 1) {
-                contentVOS = contentService.filterVO(buySet, false);
+            if (user.getType() == 1) {
+                HashSet<Integer> buySet = orderService.getBuySet(user.getId());
+                if (type == null) {
+                    type = 0;
+                }
+                modelMap.addAttribute("type", type);
+                if (type == 1) {
+                    contentVOS = contentService.filterVO(buySet, false);
+                } else {
+                    contentVOS = contentService.getAllVO(buySet);
+                }
+                modelMap.addAttribute("contentVOList", contentVOS);
             } else {
-                contentVOS = contentService.getAllVO(buySet);
+                HashSet<Integer> soldSet = orderService.getSoldSet(user.getId());
+                List<Content> contents = contentService.queryBySid(user.getId());
+                contentVOS = ContentVO.buildFromList(contents, soldSet);
+                modelMap.addAttribute("contentVOList", contentVOS);
             }
-            modelMap.addAttribute("contentVOList", contentVOS);
         }
-
         return "index";
     }
 }

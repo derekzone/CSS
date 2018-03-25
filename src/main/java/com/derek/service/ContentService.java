@@ -45,8 +45,17 @@ public interface ContentService {
 
     /**
      * 根据用户id查找所有购买商品
+     *
      * @param uid 用户id
      * @return
      */
     public List<ContentVO> queryVOByUid(int uid);
+
+    /**
+     * 查找商家所有商品
+     *
+     * @param sid
+     * @return
+     */
+    public List<Content> queryBySid(int sid);
 }

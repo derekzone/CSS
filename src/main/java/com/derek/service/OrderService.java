@@ -47,4 +47,12 @@ public interface OrderService {
      */
     public boolean order(int uid, int cid, int number);
 
+    /**
+     * 查询商家售出商品id集合
+     *
+     * @param uid
+     * @return
+     */
+    public HashSet<Integer> getSoldSet(int uid);
+
 }

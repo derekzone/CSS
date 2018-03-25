@@ -53,4 +53,10 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.order(order);
     }
 
+    @Override
+    public HashSet<Integer> getSoldSet(int uid) {
+        List<Integer> soldList = orderMapper.getSoldSet(uid);
+        return new HashSet<Integer>(soldList);
+    }
+
 }

@@ -37,4 +37,7 @@ public interface OrderMapper extends Mapper<Order> {
 
     @Select("SELECT SUM(price*num)From `order` WHERE uid = 2")
     public BigDecimal computeTotalCost(int uid);
+
+    @Select("SELECT DISTINCT o.cid FROM `order` o JOIN content c ON c.id = o.cid WHERE c.sid = ${uid}")
+    public List<Integer> getSoldSet(@Param("uid") int uid);
 }

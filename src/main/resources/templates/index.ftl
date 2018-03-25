@@ -10,7 +10,7 @@
         <div class="tab">
             <ul>
                 <li <#if type?? && type != 1>class="z-sel"</#if> ><a href="/">所有内容</a></li>
-                <#if user??>
+                <#if user?? && user.type == 1>
                     <li <#if type?? && type == 1>class="z-sel"</#if> ><a href="/?type=1">未购买的内容</a></li>
                 </#if>
             </ul>
@@ -30,12 +30,19 @@
                         <h3>${c.title}</h3>
                         <div class="price"><span class="v-unit">¥</span><span class="v-value">${c.price}</span>
                         </div>
-                        <#if user??>
-                            <#if c.isBuy() == true>
-                            <span class="had"><b>已购买</b></span>
-                            </#if>
+                <#if user??>
+                    <#if c.isBuy() == true>
+                        <#if user.type ==  1>
+                                <span class="had"><b>已购买</b></span>
+                        <#else >
+                                <span class="had"><b>已售出</b></span>
                         </#if>
+                    </#if>
+                </#if>
                     </a>
+                    <#if user?? && user.type == 2 && c.isBuy() == false>
+                         <span class="u-btn u-btn-normal u-btn-xs del" data-del="${c.id}">删除</span>
+                    </#if>
                 </li>
             </#list>
         </ul>

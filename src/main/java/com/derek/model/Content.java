@@ -17,6 +17,11 @@ public class Content {
 
     private BigDecimal price;
 
+    /**
+     * 商家id
+     */
+    private Integer sid;
+
     public Integer getId() {
         return id;
     }
@@ -63,5 +68,13 @@ public class Content {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Integer getSid() {
+        return sid;
+    }
+
+    public void setSid(Integer sid) {
+        this.sid = sid;
     }
 }
