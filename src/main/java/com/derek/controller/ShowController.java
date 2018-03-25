@@ -35,6 +35,7 @@ public class ShowController {
             Order order = orderService.getByUidCid(user.getId(), content.getId());
             ContentVO contentVO = new ContentVO(content, order);
             modelMap.addAttribute("contentVO", contentVO);
+            modelMap.addAttribute("user", user);
         }
         return "show";
     }
