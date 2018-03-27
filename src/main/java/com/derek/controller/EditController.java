@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 
 /**
  * @author Derek
@@ -34,5 +35,26 @@ public class EditController {
         }
         modelMap.addAttribute("content", content);
         return "edit";
+    }
+
+    @RequestMapping("/editSubmit")
+    public String editSubmit(@RequestParam("id") Integer id,
+                             @RequestParam("title") String title,
+                             @RequestParam("summary") String summary,
+                             @RequestParam("image") String image,
+                             @RequestParam("detail") String detail,
+                             @RequestParam("price") BigDecimal price,
+                             ModelMap modelMap) {
+        Content content = new Content();
+        content.setId(id);
+        content.setTitle(title);
+        content.setSummary(summary);
+        content.setImage(image);
+        content.setDetail(detail);
+        content.setPrice(price);
+        boolean result = contentService.update(content);
+        //TODO 更新失败时的页面
+        modelMap.addAttribute("id", id);
+        return "editSubmit";
     }
 }

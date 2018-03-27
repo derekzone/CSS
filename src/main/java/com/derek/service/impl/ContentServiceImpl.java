@@ -78,4 +78,9 @@ public class ContentServiceImpl implements ContentService {
     public List<Content> queryBySid(int sid) {
         return contentMapper.queryBySid(sid);
     }
+
+    @Override
+    public boolean update(Content content) {
+        return contentMapper.updateByPrimaryKeySelective(content) == 1;
+    }
 }

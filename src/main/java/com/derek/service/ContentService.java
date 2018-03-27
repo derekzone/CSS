@@ -58,4 +58,12 @@ public interface ContentService {
      * @return
      */
     public List<Content> queryBySid(int sid);
+
+    /**
+     * 更新商品
+     *
+     * @param content
+     * @return
+     */
+    public boolean update(Content content);
 }

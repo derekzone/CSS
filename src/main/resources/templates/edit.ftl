@@ -35,7 +35,7 @@
             <div class="fmitem">
                 <label class="fmlab"></label>
                 <div class="fmipt" id="urlUpload">
-                    <input class="u-ipt ipt" name="image" placeholder="图片地址"/>
+                    <input class="u-ipt ipt" name="image" placeholder="图片地址" value="${content.image}"/>
                 </div>
                 <div class="fmipt" id="fileUpload" style="display:none">
                     <input class="u-ipt ipt" name="file" type="file" id="fileUp"/>

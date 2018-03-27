@@ -23,4 +23,6 @@ public interface ContentMapper extends Mapper<Content> {
 
     @Select("SELECT * FROM content WHERE sid = #{sid}")
     public List<Content> queryBySid(@Param("sid") int sid);
+
+
 }
