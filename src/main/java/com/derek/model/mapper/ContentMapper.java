@@ -2,6 +2,8 @@ package com.derek.model.mapper;
 
 import com.derek.model.Content;
 import com.derek.model.VO.ContentVO;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -24,5 +26,7 @@ public interface ContentMapper extends Mapper<Content> {
     @Select("SELECT * FROM content WHERE sid = #{sid}")
     public List<Content> queryBySid(@Param("sid") int sid);
 
-
+    @Insert("INSERT INTO content(title, summary, detail, image, price, sid) VALUES(#{content.title}, #{content.summary}, #{content.detail}, #{content.image}, #{content.price}, #{content.sid})")
+    @Options(useGeneratedKeys = true, keyProperty = "content.id")
+    public void insertGenId(@Param("content") Content content);
 }

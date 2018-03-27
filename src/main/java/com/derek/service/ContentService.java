@@ -66,4 +66,12 @@ public interface ContentService {
      * @return
      */
     public boolean update(Content content);
+
+    /**
+     * 添加商品
+     *
+     * @param content
+     * @return
+     */
+    public void addContent(Content content);
 }

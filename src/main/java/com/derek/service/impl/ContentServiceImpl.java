@@ -83,4 +83,9 @@ public class ContentServiceImpl implements ContentService {
     public boolean update(Content content) {
         return contentMapper.updateByPrimaryKeySelective(content) == 1;
     }
+
+    @Override
+    public void addContent(Content content) {
+        contentMapper.insertGenId(content);
+    }
 }
