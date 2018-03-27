@@ -4,32 +4,40 @@ import lombok.Data;
 
 /**
  * @author Derek
- * @date 2018/3/21 20:24
+ * @date 2018/3/25 23:23
  */
 @Data
-public class BaseResponse<T> {
-    private T data;
-
+public class BaseResponse {
     private String message;
-
-    private boolean success;
-
+    private String result;
     private int code;
 
-    public static BaseResponse success() {
-        BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setSuccess(true);
-        baseResponse.setMessage("OK");
-        baseResponse.setCode(200);
-        return baseResponse;
-    }
-
     public static BaseResponse fail() {
-        BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setSuccess(false);
-        baseResponse.setCode(0);
-        baseResponse.setMessage("Something Wrong");
-        return baseResponse;
+        BaseResponse response = new BaseResponse();
+        response.setCode(400);
+        response.setMessage("error");
+        return response;
     }
 
+    public static BaseResponse fail(String message) {
+        BaseResponse response = new BaseResponse();
+        response.setCode(400);
+        response.setMessage(message);
+        return response;
+    }
+
+    public static BaseResponse success(String result) {
+        BaseResponse response = new BaseResponse();
+        response.setMessage("success");
+        response.setCode(200);
+        response.setResult(result);
+        return response;
+    }
+
+    public static BaseResponse success() {
+        BaseResponse response = new BaseResponse();
+        response.setMessage("success");
+        response.setCode(200);
+        return response;
+    }
 }

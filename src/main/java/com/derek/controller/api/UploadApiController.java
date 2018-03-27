@@ -1,7 +1,6 @@
 package com.derek.controller.api;
 
-import com.derek.model.response.FileUploadResponse;
-import com.derek.service.FileService;
+import com.derek.model.response.BaseResponse;
 import com.derek.service.StorageService;
 import com.derek.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +22,11 @@ import javax.servlet.http.HttpSession;
 public class UploadApiController {
 
     @Autowired
-    private FileService fileService;
-    @Autowired
     private StorageService storageService;
 
     @RequestMapping("/upload")
     @ResponseBody
-    public FileUploadResponse upload(final HttpServletRequest request, @RequestParam("file") MultipartFile file, HttpSession httpSession) {
+    public BaseResponse upload(final HttpServletRequest request, @RequestParam("file") MultipartFile file, HttpSession httpSession) {
 
         //TODO log
         // TODO 统一做异常处理的切面
@@ -37,6 +34,6 @@ public class UploadApiController {
         String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1); // 文件后缀
         String fileName = FileUtils.genFileName(suffix);
         storageService.store(file, fileName);
-        return FileUploadResponse.success("/files/image/" + fileName);
+        return BaseResponse.success("/files/image/" + fileName);
     }
 }
