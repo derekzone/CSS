@@ -44,7 +44,7 @@ public class EditController {
                              @RequestParam("image") String image,
                              @RequestParam("detail") String detail,
                              @RequestParam("price") BigDecimal price,
-                             ModelMap modelMap) {
+                             ModelMap modelMap) throws Exception {
         Content content = new Content();
         content.setId(id);
         content.setTitle(title);
@@ -53,7 +53,9 @@ public class EditController {
         content.setDetail(detail);
         content.setPrice(price);
         boolean result = contentService.update(content);
-        //TODO 更新失败时的页面
+        if (result == false) {
+            throw new Exception("编辑失败！");
+        }
         modelMap.addAttribute("id", id);
         return "editSubmit";
     }

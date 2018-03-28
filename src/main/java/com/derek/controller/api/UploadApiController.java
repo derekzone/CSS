@@ -29,7 +29,6 @@ public class UploadApiController {
     public BaseResponse upload(final HttpServletRequest request, @RequestParam("file") MultipartFile file, HttpSession httpSession) {
 
         //TODO log
-        // TODO 统一做异常处理的切面
         //TODO 文件删除替换逻辑
         String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1); // 文件后缀
         String fileName = FileUtils.genFileName(suffix);

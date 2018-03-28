@@ -91,6 +91,7 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public boolean delete(int id) {
+        //TODO 图片删除
         return contentMapper.deleteByPrimaryKey(id) == 1;
     }
 }

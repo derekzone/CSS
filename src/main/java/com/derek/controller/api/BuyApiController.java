@@ -1,5 +1,6 @@
 package com.derek.controller.api;
 
+import com.derek.exception.BaseException;
 import com.derek.model.User;
 import com.derek.model.request.OrderInfo;
 import com.derek.model.response.BaseResponse;
@@ -27,7 +28,6 @@ public class BuyApiController {
     @RequestMapping("/buy")
     @ResponseBody
 
-    //TODO 统一做异常抛出  切面处理抛出异常
     public BaseResponse buy(@RequestBody List<OrderInfo> orderInfos,
                             HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
@@ -36,14 +36,11 @@ public class BuyApiController {
         }
         for (OrderInfo orderInfo :
                 orderInfos) {
-            orderService.order(user.getId(), orderInfo.getId(), orderInfo.getNumber());
+            boolean result = orderService.order(user.getId(), orderInfo.getId(), orderInfo.getNumber());
+            if (!result) {
+                throw new BaseException("下单错误!");
+            }
         }
-        //TODO 异常处理
-        boolean result = true;
-        if (result == true) {
-            return BaseResponse.success();
-        } else {
-            return BaseResponse.fail();
-        }
+        return BaseResponse.success();
     }
 }
