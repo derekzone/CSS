@@ -4,6 +4,8 @@ import com.derek.model.User;
 import com.derek.model.VO.ContentVO;
 import com.derek.service.AccountService;
 import com.derek.service.ContentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +22,8 @@ import java.util.List;
 @Controller
 public class AccountController {
 
+    private final static Logger logger = LoggerFactory.getLogger(AccountController.class);
+
     //TODO 重构优化  各个Service的分工
     @Autowired
     private ContentService contentService;
@@ -32,6 +36,7 @@ public class AccountController {
         if (user == null) {
             return "login";
         }
+        logger.info("用户:" + user.getUsername() + "查看账务");
         List<ContentVO> contentVOS = contentService.queryVOByUid(user.getId());
         modelMap.addAttribute("contentVOS", contentVOS);
         BigDecimal totalPrice = accountService.totalCost(user.getId());

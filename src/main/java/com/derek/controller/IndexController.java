@@ -19,7 +19,6 @@ import java.util.List;
  * @author Derek
  * @date 2018/3/21 14:32
  */
-//TODO log没有
 @Controller
 public class IndexController {
 

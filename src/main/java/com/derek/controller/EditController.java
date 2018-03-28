@@ -3,6 +3,8 @@ package com.derek.controller;
 import com.derek.model.Content;
 import com.derek.model.User;
 import com.derek.service.ContentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,7 +20,7 @@ import java.math.BigDecimal;
  */
 @Controller
 public class EditController {
-
+    private final static Logger logger = LoggerFactory.getLogger(EditController.class);
     @Autowired
     private ContentService contentService;
 
@@ -33,6 +35,7 @@ public class EditController {
             httpSession.removeAttribute("user");
             return "login";
         }
+        logger.info("用户:"+user.getUsername()+"编辑商品");
         modelMap.addAttribute("content", content);
         return "edit";
     }
@@ -44,7 +47,15 @@ public class EditController {
                              @RequestParam("image") String image,
                              @RequestParam("detail") String detail,
                              @RequestParam("price") BigDecimal price,
-                             ModelMap modelMap) throws Exception {
+                             ModelMap modelMap,HttpSession httpSession) throws Exception {
+        User user = (User) httpSession.getAttribute("user");
+        if (user == null) {
+            return "login";
+        }
+        if (user.getType() == 1) {
+            httpSession.removeAttribute("user");
+            return "login";
+        }
         Content content = new Content();
         content.setId(id);
         content.setTitle(title);

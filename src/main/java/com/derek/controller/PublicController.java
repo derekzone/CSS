@@ -3,6 +3,8 @@ package com.derek.controller;
 import com.derek.model.Content;
 import com.derek.model.User;
 import com.derek.service.ContentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +20,7 @@ import java.math.BigDecimal;
  */
 @Controller
 public class PublicController {
+    private final static Logger logger = LoggerFactory.getLogger(PublicController.class);
 
     @Autowired
     private ContentService contentService;
@@ -45,6 +48,7 @@ public class PublicController {
         if (user == null || user.getType() != 2) {
             return "login";
         }
+        logger.info("商家" + user.getUsername() + "发布商品");
         Content content = new Content();
         content.setSid(user.getId());
         content.setPrice(price);
