@@ -74,4 +74,12 @@ public interface ContentService {
      * @return
      */
     public void addContent(Content content);
+
+    /**
+     * 删除商品
+     *
+     * @param id
+     * @return
+     */
+    public boolean delete(int id);
 }

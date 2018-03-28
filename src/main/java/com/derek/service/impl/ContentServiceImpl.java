@@ -88,4 +88,9 @@ public class ContentServiceImpl implements ContentService {
     public void addContent(Content content) {
         contentMapper.insertGenId(content);
     }
+
+    @Override
+    public boolean delete(int id) {
+        return contentMapper.deleteByPrimaryKey(id) == 1;
+    }
 }
