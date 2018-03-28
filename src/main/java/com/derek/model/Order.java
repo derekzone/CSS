@@ -1,10 +1,13 @@
 package com.derek.model;
 
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable {
+
+    private static final long serialVersionUID = -3188502952903155678L;
     @Id
     private Integer id;
 

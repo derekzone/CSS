@@ -1,8 +1,10 @@
 package com.derek.model;
 
 import javax.persistence.Id;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 6973443089286692944L;
     @Id
     private Integer id;
 

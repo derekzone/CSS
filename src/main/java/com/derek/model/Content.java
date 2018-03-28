@@ -1,9 +1,12 @@
 package com.derek.model;
 
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Content {
+public class Content implements Serializable {
+
+    private static final long serialVersionUID = 3160702302320993667L;
     @Id
     private Integer id;
 

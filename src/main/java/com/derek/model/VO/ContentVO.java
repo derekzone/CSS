@@ -5,6 +5,7 @@ import com.derek.model.Order;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,8 +20,9 @@ import java.util.List;
  * @date 2018/3/21 23:06
  */
 @Data
-public class ContentVO {
+public class ContentVO implements Serializable {
 
+    private static final long serialVersionUID = 9134565481594715504L;
     private Integer id;
 
     private String title;
