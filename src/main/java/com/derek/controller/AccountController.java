@@ -24,7 +24,6 @@ public class AccountController {
 
     private final static Logger logger = LoggerFactory.getLogger(AccountController.class);
 
-    //TODO 重构优化  各个Service的分工
     @Autowired
     private ContentService contentService;
     @Autowired

@@ -66,9 +66,7 @@ public class RedisConfig extends CachingConfigurerSupport {
             cacheManager.setUsePrefix(true); //事实上这是Spring Boot的默认设置，为了避免key冲突
 
             Map<String, Long> expires = new HashMap<>();
-            //TODO 对应key的设置
             expires.put("content", 12L * 60 * 60);  // 设置过期时间 key is cache-name
-            expires.put("myBiggerCache", 24L * 60 * 60);
             cacheManager.setExpires(expires);  // expire per cache
 
             cacheManager.setDefaultExpiration(24 * 60 * 60);// 默认过期时间：24 hours
