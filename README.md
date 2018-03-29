@@ -15,7 +15,7 @@ demo地址：[http://35.189.179.162:8010/](http://35.189.179.162:8010/)
 - FreeMarker
 
 ## 运行步骤
-1. 修改 `application.yml` 中数据库、redis的配置
+1. 修改 application.yml 中数据库、redis的配置
 2. 初始化数据库(sql文件在resource-sql目录下)
 3. mvn clean compile
 4. mvn spring-boot:run
@@ -26,7 +26,7 @@ demo地址：[http://35.189.179.162:8010/](http://35.189.179.162:8010/)
 * `com.derek.config` 中有Druid、Mybatis、Redis、Spring MVC等配置
 
 ### ORM
-* mapper在 `com.derek.model.mapper` 包中，使用注解实现
+* mapper在 `com.derek.model.mapper` 包中,使用注解实现
 * 数据库字段对应的bean由maven插件 `mybatis-generator-maven-plugin` 自动生成，相关配置在 `mybatis=generator.xml` 中
 ## 异常处理
 *  `com.derek.exception` 包中定义了异常
