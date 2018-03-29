@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.21, for osx10.13 (x86_64)
+ -- MySQL dump 10.13  Distrib 5.7.21, for osx10.13 (x86_64)
 --
 -- Host: 127.0.0.1    Database: css
 -- ------------------------------------------------------
@@ -18,6 +18,9 @@
 --
 -- Table structure for table `content`
 --
+
+CREATE DATABASE css;
+USE css;
 
 DROP TABLE IF EXISTS `content`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

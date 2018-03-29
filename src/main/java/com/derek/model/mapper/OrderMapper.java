@@ -32,7 +32,7 @@ public interface OrderMapper extends Mapper<Order> {
     @Select("SELECT * FROM `order` WHERE uid = ${uid} AND cid = ${cid}")
     public Order getByUserContent(@Param("uid") int uid, @Param("cid") int cid);
 
-    @Insert("INSERT INTO `order`(uid, cid, price, num) VALUES(#{uid},#{cid},#{price},#{num})")
+    @Insert("INSERT INTO `order`(uid, cid, price, num,gmt_create) VALUES(#{uid},#{cid},#{price},#{num},#{gmtCreate})")
     public boolean order(Order order);
 
     @Select("SELECT SUM(price*num)From `order` WHERE uid = 2")
