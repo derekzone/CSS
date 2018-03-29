@@ -40,7 +40,7 @@ public class ContentApiController {
             return BaseResponse.fail("商品已删除！");
         }
         logger.info("用户" + user.getUsername() + "删除id为" + content.getId() + "商品");
-        if (content.getSid() != user.getId()) {
+        if (!content.getSid().equals(user.getId())) {
             return BaseResponse.fail("没有操作权限！");
         }
         boolean result = contentService.delete(id);
