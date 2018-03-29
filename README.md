@@ -15,7 +15,7 @@ demo地址：[http://35.189.179.162:8010/](http://35.189.179.162:8010/)
 - FreeMarker
 
 ## 运行步骤
-1. 修改 application.yml 中数据库、redis的配置
+1. 修改application.yml中数据库、redis的配置
 2. 初始化数据库(sql文件在resource-sql目录下)
 3. mvn clean compile
 4. mvn spring-boot:run
