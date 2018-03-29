@@ -5,6 +5,8 @@ import com.derek.model.VO.ContentVO;
 import com.derek.model.mapper.ContentMapper;
 import com.derek.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class ContentServiceImpl implements ContentService {
      * @return 商品list
      */
     @Override
+    @Cacheable(value = "content", key = "'all'")
     public List<Content> getAll() {
         return contentMapper.selectAll();
     }
@@ -65,6 +68,7 @@ public class ContentServiceImpl implements ContentService {
     }
 
     @Override
+    @Cacheable(value = "content", key = "#id.toString()")
     public Content getById(int id) {
         return contentMapper.selectByPrimaryKey(id);
     }
@@ -75,21 +79,25 @@ public class ContentServiceImpl implements ContentService {
     }
 
     @Override
+    @Cacheable(value = "content", key = "#sid + ':seller'")
     public List<Content> queryBySid(int sid) {
         return contentMapper.queryBySid(sid);
     }
 
     @Override
+    @CacheEvict(value = "content", key = "#id.toString()", allEntries = true)
     public boolean update(Content content) {
         return contentMapper.updateByPrimaryKeySelective(content) == 1;
     }
 
     @Override
+    @CacheEvict(value = "content", allEntries = true)
     public void addContent(Content content) {
         contentMapper.insertGenId(content);
     }
 
     @Override
+    @CacheEvict(value = "content", key = "#id.toString()", allEntries = true)
     public boolean delete(int id) {
         //TODO 图片删除
         return contentMapper.deleteByPrimaryKey(id) == 1;
