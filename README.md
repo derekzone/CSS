@@ -22,10 +22,10 @@ demo地址：[http://35.189.179.162:8010/](http://35.189.179.162:8010/)
 
 ## 工程结构
 ### 配置文件
-* application.yml 中包含主要配置参数
+* application.yml 包含主要配置参数
 * `com.derek.config` 中有Druid、Mybatis、Redis、Spring MVC等配置
 
-### ORM
+### ORM
 * mapper在 `com.derek.model.mapper` 包中,使用注解实现
 * 数据库字段对应的bean由maven插件 `mybatis-generator-maven-plugin` 自动生成，相关配置在 `mybatis=generator.xml` 中
 ## 异常处理
